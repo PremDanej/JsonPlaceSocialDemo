@@ -1,12 +1,12 @@
 package com.merp.json.placeholder.api.demo.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.merp.json.placeholder.api.demo.R;
 import com.merp.json.placeholder.api.demo.databinding.ItemViewPostBinding;
 import com.merp.json.placeholder.api.demo.model.PostResponse;
 
@@ -30,6 +30,18 @@ public class PostResponseAdapter extends RecyclerView.Adapter<PostResponseAdapte
         PostResponse item = list.get(position);
         holder.binding.txtTitle.setText(item.getTitle());
         holder.binding.txtBody.setText(item.getBody());
+        holder.binding.imgFavorite.setImageResource(setFavoriteItem(item.isFavorite()));
+        holder.binding.imgFavorite.setOnClickListener(view -> {
+            item.setFavorite(!item.isFavorite());
+            notifyDataSetChanged();
+        });
+    }
+
+    private int setFavoriteItem(boolean favorite) {
+        if (favorite)
+            return R.drawable.ic_favorite;
+        else
+            return R.drawable.ic_un_favorite;
     }
 
     @Override

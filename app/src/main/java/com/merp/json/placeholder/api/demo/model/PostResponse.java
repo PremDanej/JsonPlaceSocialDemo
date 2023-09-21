@@ -16,6 +16,16 @@ public class PostResponse {
     @SerializedName("body")
     private String body;
 
+    private boolean favorite;
+
+    public PostResponse(int userId, int id, String title, String body, boolean favorite) {
+        this.userId = userId;
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.favorite = favorite;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -46,5 +56,13 @@ public class PostResponse {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }
